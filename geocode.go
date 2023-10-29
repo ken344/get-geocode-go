@@ -1,4 +1,4 @@
-package main
+package address2geocode
 
 import (
 	"context"
@@ -24,9 +24,9 @@ func init() {
 	SetDotenv(".env")
 }
 
-// address2Geocode 住所から緯度経度を取得する
+// Address2Geocode address2Geocode 住所から緯度経度を取得する
 // google-mapsのGeocoding APIを使用
-func address2Geocode(address string) (*maps.LatLng, error) {
+func Address2Geocode(address string) (*maps.LatLng, error) {
 	// Geocoding APIのクライアントを作成
 	c, err := maps.NewClient(maps.WithAPIKey(os.Getenv("GOOGLE_API_KEY_MAP")))
 	if err != nil {
@@ -53,9 +53,9 @@ func address2Geocode(address string) (*maps.LatLng, error) {
 	return &resp[0].Geometry.Location, nil
 }
 
-func main() {
+func example() {
 	// 住所を関数に渡して、緯度経度を戻り値として取得。
-	location, err := address2Geocode("東京都新宿区西新宿２丁目８−１")
+	location, err := Address2Geocode("東京都新宿区西新宿２丁目８−１")
 	if err != nil {
 		log.Fatal(err)
 	}
